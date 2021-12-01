@@ -10,6 +10,13 @@ const maxGuessesMessage = document.getElementById('max-guesses');
 const numberOfGuessesMessage = document.getElementById('number-of-guesses');
 const correctMessage = document.getElementById('correct');
 
+const lessThanMessage = document.getElementById('less-than');
+const moreThanMessage = document.getElementById('more-than');
+const red = document.getElementsByClassName('red');
+const negative = document.getElementsByClassName('negative');
+
+
+
 let targetNumber;
 let attempts = 0;
 let maxNumberOfAttempts = 5;
@@ -30,6 +37,8 @@ function checkGuess() {
   attempts = attempts + 1;
 
   hideAllMessages();
+
+ 
 
   if (guess === targetNumber) {
     numberOfGuessesMessage.style.display = '';
@@ -61,6 +70,16 @@ function checkGuess() {
     numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
   }
 
+if (guess >= 100) {
+    lessThanMessage.style.display = '';
+    hideNonRedMessages();
+  }
+
+  if (guess <= -1) {
+    moreThanMessage.style.display = '';
+    hideNonNegativeMessages();
+  }
+
   if (attempts === maxNumberOfAttempts) {
     submitButton.disabled = true;
     guessInput.disabled = true;
@@ -73,9 +92,23 @@ function checkGuess() {
 
 function hideAllMessages() {
   for (let elementIndex = 0; elementIndex < messages.length; elementIndex++) {
-    messages[elementIndex].style.display = 'none';
+    messages[elementIndex].style.display = 'none'; 
   }
 }
+
+
+function hideNonRedMessages() {
+  for (let elementIndex = 0; elementIndex < red.length; elementIndex++) {
+    red[elementIndex].style.display = 'none';
+  }
+}
+
+function hideNonNegativeMessages() {
+  for (let elementIndex = 0; elementIndex < negative.length; elementIndex++) {
+    negative[elementIndex].style.display = 'none';
+  }
+}
+
 
 function setup() {
   // Get random number
