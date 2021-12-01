@@ -13,3 +13,11 @@ main {
 #reset {
   margin: 20px;
 }
+
+#less-than{
+  color: red;
+}
+
+#more-than{
+  color: red;
+}
